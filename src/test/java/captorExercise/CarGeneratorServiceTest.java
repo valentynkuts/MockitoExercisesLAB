@@ -7,6 +7,7 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static junit.framework.TestCase.assertEquals;
+import static org.mockito.Mockito.verify;
 
 /*
 Przetestuj klasę CarGeneratorService przy pomocy Captora – przechwyć
@@ -19,10 +20,15 @@ public class CarGeneratorServiceTest {
     @Test
     public void captorTest() {
         ICarGenerator carGen = Mockito.mock(ICarGenerator.class);
+        CarGeneratorService carGeneratorService = new CarGeneratorService(carGen);
+
+        carGeneratorService.generateCar("BMW","grey");
+
         ArgumentCaptor<Car> arg = ArgumentCaptor.forClass(Car.class);
 
         Mockito.verify(carGen).generateCar(arg.capture());
-        //Car c = arg.getValue();
-        //assertEquals("grey", arg.getValue().getColour());
+        Car c = arg.getValue();
+        assertEquals("grey", c.getColour());
+        assertEquals("BMW", c.getMake());
     }
 }

@@ -1,7 +1,24 @@
 package captorExercise;
 
 public class CarGeneratorService {
+
+
     ICarGenerator carGenerator;
+
+    public CarGeneratorService(){
+    }
+
+    public CarGeneratorService(ICarGenerator carGenerator) {
+        this.carGenerator = carGenerator;
+    }
+
+    public ICarGenerator getCarGenerator() {
+        return carGenerator;
+    }
+
+    public void setCarGenerator(ICarGenerator carGenerator) {
+        this.carGenerator = carGenerator;
+    }
 
 
     public void generateCar(String make, String colour) {
